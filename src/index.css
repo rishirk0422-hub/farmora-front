@@ -1,13 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌈 GLOBAL BACKGROUND */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gradient-to-br from-green-100 via-white to-green-200 
+         dark:from-gray-900 dark:via-gray-800 dark:to-black;
+  min-height: 100vh;
+  transition: all 0.3s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* GLASS EFFECT */
+.glass {
+  @apply bg-white/30 dark:bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg;
+}
+
+/* BUTTON */
+.btn-gradient {
+  @apply bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl shadow-md hover:scale-105 transition;
+}
+html {
+  scroll-behavior: smooth;
+}
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* 🌟 TOAST CUSTOM (THEME AWARE) */
+.Toastify__toast {
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+/* 🌈 GLASS EFFECT */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* 🌞 LIGHT MODE */
+body {
+  color: #111827;
+}
+
+/* 🌙 DARK MODE GLOBAL FIX */
+.dark body {
+  color: #e5e7eb;
+  background: linear-gradient(
+    135deg,
+    #020617,
+    #020617,
+    #0f172a,
+    #020617
+  );
+  background-size: 400% 400%;
+  animation: darkBG 20s ease infinite;
+}
+
+/* 🌌 DARK BG ANIMATION */
+@keyframes darkBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🧠 TEXT FIX */
+.dark p,
+.dark span,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4 {
+  color: #e5e7eb !important;
+}
+
+/* 🌿 PRIMARY (Green) */
+.btn-primary {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+/* 🔵 INFO (Blue) */
+.btn-info {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+/* 🟣 ACCENT (Purple/Premium) */
+.btn-accent {
+  background: linear-gradient(90deg, #8b5cf6, #6d28d9);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+/* 🔴 DANGER */
+.btn-danger {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+/* ⚪ GLASS BUTTON */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 16px;
+}
+
+/* 🎨 MUI THEME FIX */
+
+/* LABEL */
+.MuiInputLabel-root {
+  color: #6b7280 !important;
+}
+
+.dark .MuiInputLabel-root {
+  color: #cbd5e1 !important;
+}
+
+/* FOCUSED LABEL */
+.MuiInputLabel-root.Mui-focused {
+  color: #22c55e !important;
+}
+
+/* BORDER */
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0,0,0,0.2) !important;
+}
+
+.dark .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+/* HOVER */
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #22c55e !important;
+}
+
+/* FOCUS */
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #22c55e !important;
+  border-width: 2px;
+}
+
+/* INPUT TEXT */
+.MuiOutlinedInput-input {
+  color: #111827 !important;
+}
+
+.dark .MuiOutlinedInput-input {
+  color: #f1f5f9 !important;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* 🔥 DEPTH */
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* 🌙 DARK MODE */
+.dark .glass {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.05);
 }
