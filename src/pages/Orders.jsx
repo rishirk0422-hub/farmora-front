@@ -40,15 +40,11 @@ const Orders = () => {
       <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
         Orders
       </h2>
-
-      {/* EMPTY STATE */}
       {orders.length === 0 && (
         <p className="text-gray-500 dark:text-gray-400">
           No orders yet
         </p>
       )}
-
-      {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {orders.map((order) => (
           <div
@@ -62,7 +58,6 @@ const Orders = () => {
               dark:shadow-[0_4px_20px_rgba(255,255,255,0.08)]
             "
           >
-            {/* HEADER */}
             <div className="flex justify-between items-center mb-2">
               <h3 className="font-bold text-lg text-green-600 dark:text-green-400">
                 {order.product?.title || "Product"}
@@ -70,8 +65,6 @@ const Orders = () => {
 
               <StatusBadge status={order.status} />
             </div>
-
-            {/* BODY */}
             <div className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
 
               <p>

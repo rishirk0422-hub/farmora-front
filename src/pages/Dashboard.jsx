@@ -12,8 +12,6 @@ const Dashboard = () => {
           ? "👨‍🌾 Seller Dashboard"
           : "🛒 Buyer Dashboard"}
       </h1>
-
-      {/* SELLER UI */}
       {user?.role === "seller" && (
         <div className="space-y-4">
           <button
@@ -38,8 +36,6 @@ const Dashboard = () => {
           </button>
         </div>
       )}
-
-      {/* BUYER UI */}
       {user?.role === "buyer" && (
         <div className="space-y-4">
           <button

@@ -28,7 +28,7 @@ const onSubmit = async (data) => {
 
     const { accessToken, user } = res.data;
 
-    login(user, accessToken); // 🔥 THIS IS THE KEY FIX
+    login(user, accessToken); 
 
     toast.success("Welcome back 🚀");
     navigate("/dashboard");
@@ -40,8 +40,6 @@ const onSubmit = async (data) => {
 
   return (
     <Box className="flex justify-center items-center min-h-screen px-4">
-
-      {/* 🔥 FLOATING GLASS CARD */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}

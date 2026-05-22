@@ -69,7 +69,6 @@ const AddProduct = () => {
           Add Product
         </Typography>
 
-        {/* GRID FORM */}
         <Grid container spacing={2}>
 
           <Grid item xs={6}>
@@ -129,8 +128,6 @@ const AddProduct = () => {
               <MenuItem value="ton">Ton</MenuItem>
             </TextField>
           </Grid>
-
-          {/* DESCRIPTION FULL WIDTH */}
           <Grid item xs={12}>
             <TextField
               size="small"
@@ -144,8 +141,6 @@ const AddProduct = () => {
           </Grid>
 
         </Grid>
-
-        {/* IMAGE UPLOAD */}
         <Box mt={2}>
           <Button
             variant="outlined"
@@ -157,7 +152,6 @@ const AddProduct = () => {
           </Button>
         </Box>
 
-        {/* PREVIEW */}
         {preview && (
           <Box mt={2}>
             <img
@@ -167,8 +161,6 @@ const AddProduct = () => {
             />
           </Box>
         )}
-
-        {/* SUBMIT */}
         <Button
           fullWidth
           variant="contained"

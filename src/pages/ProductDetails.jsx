@@ -15,6 +15,7 @@ const ProductDetails = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <img
+      alt="imag"
         src={product.images?.[0]?.url}
         className="w-full h-60 object-cover rounded"
       />

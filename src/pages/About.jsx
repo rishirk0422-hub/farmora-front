@@ -1,5 +1,5 @@
+import { Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { Box, Typography } from "@mui/material";
 import { GoGoal } from "react-icons/go";
 import { MdOutlineSyncProblem } from "react-icons/md";
 import { RiReplyAllLine } from "react-icons/ri";
@@ -10,7 +10,6 @@ import { RiReplyAllLine } from "react-icons/ri";
 const About = () => {
   return (
     <div className="px-4 md:px-10 py-12 space-y-16">
-      {/* 🌟 HERO SECTION */}
       <section className="text-center space-y-4">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
@@ -32,8 +31,6 @@ const About = () => {
           transparent ecosystem.
         </motion.p>
       </section>
-
-      {/* 🚀 MISSION + VISION */}
       <section className="grid md:grid-cols-2 gap-8">
         <div className="glass p-6 rounded-2xl">
           <Typography
@@ -61,8 +58,6 @@ const About = () => {
           </p>
         </div>
       </section>
-
-      {/* 🔥 PROBLEM & SOLUTION */}
       <section className="grid md:grid-cols-2 gap-8">
         <div className="glass p-6 rounded-2xl">
           <Typography variant="h5" className="flex gap-2 items-center" fontWeight="bold" mb={2}>
@@ -93,8 +88,6 @@ const About = () => {
           </ul>
         </div>
       </section>
-
-      {/* 💡 FEATURES */}
       <section>
         <Typography variant="h4" textAlign="center" mb={6}>
           What Makes Farmora Powerful ⚡
@@ -119,8 +112,6 @@ const About = () => {
           ))}
         </div>
       </section>
-
-      {/* 🌾 TARGET USERS */}
       <section className="grid md:grid-cols-2 gap-8">
         <div className="glass p-6 rounded-2xl">
           <Typography variant="h5" fontWeight="bold" mb={2}>
@@ -144,8 +135,6 @@ const About = () => {
           </ul>
         </div>
       </section>
-
-      {/* 🌟 CTA */}
       <section className="text-center space-y-4">
         <Typography variant="h4">
           Join the Agricultural Revolution 🌱

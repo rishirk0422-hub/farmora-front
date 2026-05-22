@@ -36,8 +36,6 @@ const Signup = () => {
     try {
       await api.post("/auth/signup", data);
       toast.success("Signup successful! Verify OTP 🚀");
-
-      // optional redirect after signup
       navigate("/login");
     } catch (err) {
       toast.error(err.response?.data?.message || "Error");
@@ -52,7 +50,6 @@ const Signup = () => {
         transition={{ duration: 1 }}
         className="glass p-8 w-full max-w-3xl"
       >
-        {/* HEADER */}
         <div className="flex flex-col items-center mb-6">
           <Typography variant="h4" fontWeight="bold">
             Create Account
@@ -66,7 +63,6 @@ const Signup = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="grid md:grid-cols-2 gap-4"
         >
-          {/* FULL NAME */}
           <TextField
             label="Full Name"
             {...register("fullName")}
@@ -74,8 +70,6 @@ const Signup = () => {
             helperText={errors.fullName?.message}
             fullWidth
           />
-
-          {/* EMAIL */}
           <TextField
             label="Email"
             {...register("email")}
@@ -83,8 +77,6 @@ const Signup = () => {
             helperText={errors.email?.message}
             fullWidth
           />
-
-          {/* PASSWORD */}
           <TextField
             label="Password"
             type="password"
@@ -93,8 +85,6 @@ const Signup = () => {
             helperText={errors.password?.message}
             fullWidth
           />
-
-          {/* CONFIRM PASSWORD */}
           <TextField
             label="Confirm Password"
             type="password"
@@ -103,8 +93,6 @@ const Signup = () => {
             helperText={errors.confirmPassword?.message}
             fullWidth
           />
-
-          {/* MOBILE */}
           <TextField
             label="Mobile"
             {...register("mobile")}
@@ -112,8 +100,6 @@ const Signup = () => {
             helperText={errors.mobile?.message}
             fullWidth
           />
-
-          {/* ROLE SELECT */}
           <Controller
             name="role"
             control={control}
@@ -133,8 +119,6 @@ const Signup = () => {
               </div>
             )}
           />
-
-          {/* ADDRESS FIELDS */}
           <TextField
             label="Country"
             {...register("country")}
@@ -174,8 +158,6 @@ const Signup = () => {
             helperText={errors.pincode?.message}
             fullWidth
           />
-
-          {/* SUBMIT BUTTON */}
           <Button
             type="submit"
             variant="contained"
@@ -190,8 +172,6 @@ const Signup = () => {
           >
             Create Account 🚀
           </Button>
-
-          {/* LOGIN REDIRECT */}
           <Box className="col-span-2 text-center mt-2">
             <Typography variant="body2">
               Already have an account?{" "}

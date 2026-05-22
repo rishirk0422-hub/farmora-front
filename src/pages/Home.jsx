@@ -10,7 +10,6 @@ import { GiFarmer } from "react-icons/gi";
 const Home = () => {
   return (
     <div className="space-y-24">
-      {/* 🌟 HERO SECTION */}
       <section className="text-center space-y-6 py-10 mt-4">
         <motion.h1
           initial={{ opacity: 0, y: 60 }}
@@ -44,8 +43,6 @@ const Home = () => {
           </Link>
         </div>
       </section>
-
-      {/* 🚀 FEATURES */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-10">Why Farmora ?</h2>
 
@@ -68,8 +65,6 @@ const Home = () => {
           ))}
         </div>
       </section>
-
-      {/* 🌾 FARMER vs BUYER */}
       <section className="grid md:grid-cols-2 gap-8">
         <div className="glass p-8 rounded-2xl">
           <h3 className="text-xl font-bold mb-4 flex gap-2 items-center">{<GiFarmer className="h-8 w-8 text-purple-500" />} For Farmers</h3>
@@ -91,8 +86,6 @@ const Home = () => {
           </ul>
         </div>
       </section>
-
-      {/* 📊 STATS */}
       <section className="text-center">
         <h2 className="text-3xl font-bold mb-8">Trusted by Thousands</h2>
 
@@ -110,8 +103,6 @@ const Home = () => {
           ))}
         </div>
       </section>
-
-      {/* 🔥 CTA */}
       <section className="text-center space-y-4">
         <div className="flex gap-2 items-center justify-center">
           <span className="text-3xl font-bold">Start Your Journey Today</span>
