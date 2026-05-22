@@ -1,20 +1,19 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useSocketEvents } from "./hooks/useSocketEvents";
 
 // Layouts
 import { MainLayout } from "./layouts/MainLayout";
-import DashboardLayout from "./layouts/DashboardLayout";
 
 // Pages
-import Home from "./pages/Home";
 import About from "./pages/About";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
-import Products from "./pages/Products";
-import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Orders from "./pages/Orders";
+import ProductDetails from "./pages/ProductDetails";
+import Products from "./pages/Products";
+import Signup from "./pages/Signup";
 
 // Components
 import ProtectedRoute from "./components/common/ProtectedRoute";

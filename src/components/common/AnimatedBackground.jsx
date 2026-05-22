@@ -1,13 +1,5 @@
-import { useAuth } from "../../hooks/useAuth";
-import { useTheme } from "../../hooks/useTheme";
-import { getThemeColors } from "../../theme/theme";
 
 const AnimatedBackground = () => {
-  const { user } = useAuth();
-  const { dark } = useTheme();
-
-  const role = user?.role || "buyer";
-  const colors = getThemeColors(role, dark);
 
   return (
     <div
