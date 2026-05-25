@@ -54,6 +54,7 @@ const handleLogout = () => {
     { name: "Products", path: "/products" },
     { name: "Orders", path: "/orders" },
     { name: "Dashboard", path: "/dashboard" },
+    { name: "Category Mater", path: "/masters/category" },
   ];
 
   const isActive = (path) =>

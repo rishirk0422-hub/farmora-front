@@ -20,6 +20,9 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 import AddProduct from "./pages/AddProduct";
 import SellerProducts from "./pages/SellerProducts";
 
+// Masters
+import CategoryMaster from "./Maters/CategoryMaster";
+
 function App() {
   // 🔔 Real-time socket listeners
   useSocketEvents();
@@ -33,6 +36,10 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Masters */}
+        <Route path="/masters/category" element={<CategoryMaster />} />
+
 
         {/* SELLER */}
         <Route path="/seller/add-product" element={<AddProduct />} />
