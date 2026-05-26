@@ -19,9 +19,7 @@ const ProductCard = ({ product }) => {
   const [imgLoading, setImgLoading] = useState(true);
   const [imgError, setImgError] = useState(false);
   const [open, setOpen] = useState(false);
-
-  const imageUrl = getImageUrl(product.images?.[0]?.url);
-
+  
   return (
     <>
       <Card
