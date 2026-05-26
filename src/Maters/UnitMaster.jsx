@@ -12,18 +12,18 @@ import {
 import {
   Add as AddIcon, Edit as EditIcon,
   Delete as DeleteIcon, Close as CloseIcon,
-  Category as CategoryIcon,
+  Scale as ScaleIcon,
 } from "@mui/icons-material";
 
-const categorySchema = yup.object({
-  category_name: yup.string().required("Category name is required").min(2, "Min 2 characters"),
-  category_description: yup.string().required("Description is required").min(5, "Min 5 characters"),
+const unitSchema = yup.object({
+  unit_name: yup.string().required("Unit name is required").min(1, "Min 1 character"),
+  unit_symbol: yup.string().required("Symbol is required").min(1, "Min 1 character"),
+  unit_description: yup.string().required("Description is required").min(5, "Min 5 characters"),
 });
 
 const fmtDate = (d) =>
   d ? new Date(d).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }) : "—";
 
-// ── Reusable modal button row ─────────────────────────────────────────────────
 const ModalActions = ({ onCancel, submitting, editRow, label }) => (
   <Box sx={{ display: "flex", gap: 1.5, mt: 2 }}>
     <Button
@@ -67,8 +67,8 @@ const ModalActions = ({ onCancel, submitting, editRow, label }) => (
   </Box>
 );
 
-const CategoryMaster = () => {
-  const [categories, setCategories] = useState([]);
+const UnitMaster = () => {
+  const [units, setUnits] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editRow, setEditRow] = useState(null);
@@ -76,27 +76,27 @@ const CategoryMaster = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const { register, handleSubmit, reset, formState: { errors } } =
-    useForm({ resolver: yupResolver(categorySchema) });
+    useForm({ resolver: yupResolver(unitSchema) });
 
-  const fetchCategories = async () => {
+  const fetchUnits = async () => {
     try {
       setLoading(true);
-      const res = await api.get("/masters/categories");
-      setCategories(res.data);
-    } catch { toast.error("Failed to load categories"); }
+      const res = await api.get("/masters/units");
+      setUnits(res.data);
+    } catch { toast.error("Failed to load units"); }
     finally { setLoading(false); }
   };
 
-  useEffect(() => { fetchCategories(); }, []);
+  useEffect(() => { fetchUnits(); }, []);
 
   const openAdd = () => {
     setEditRow(null);
-    reset({ category_name: "", category_description: "" });
+    reset({ unit_name: "", unit_symbol: "", unit_description: "" });
     setModalOpen(true);
   };
   const openEdit = (row) => {
     setEditRow(row);
-    reset({ category_name: row.category_name, category_description: row.category_description });
+    reset({ unit_name: row.unit_name, unit_symbol: row.unit_symbol, unit_description: row.unit_description });
     setModalOpen(true);
   };
   const closeModal = () => { setModalOpen(false); setEditRow(null); reset(); };
@@ -105,14 +105,14 @@ const CategoryMaster = () => {
     try {
       setSubmitting(true);
       if (editRow) {
-        await api.put(`/masters/categories/${editRow.id}`, data);
-        toast.success("Category updated ✅");
+        await api.put(`/masters/units/${editRow.id}`, data);
+        toast.success("Unit updated ✅");
       } else {
-        await api.post("/masters/categories", data);
-        toast.success("Category added 🚀");
+        await api.post("/masters/units", data);
+        toast.success("Unit added 🚀");
       }
       closeModal();
-      fetchCategories();
+      fetchUnits();
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
     } finally { setSubmitting(false); }
@@ -120,10 +120,10 @@ const CategoryMaster = () => {
 
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/masters/categories/${id}`);
-      toast.success("Category deleted");
+      await api.delete(`/masters/units/${id}`);
+      toast.success("Unit deleted");
       setDeleteId(null);
-      fetchCategories();
+      fetchUnits();
     } catch { toast.error("Delete failed"); }
   };
 
@@ -133,12 +133,12 @@ const CategoryMaster = () => {
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 3, flexWrap: "wrap", gap: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-            <CategoryIcon sx={{ fontSize: { xs: 26, sm: 32 }, color: "#16a34a" }} />
+            <ScaleIcon sx={{ fontSize: { xs: 26, sm: 32 }, color: "#16a34a" }} />
             <Box>
               <Typography variant="h5" fontWeight="bold" sx={{ fontSize: { xs: "1.1rem", sm: "1.5rem" } }}>
-                Category Master
+                Unit Master
               </Typography>
-              <Typography variant="body2" color="text.secondary">Manage product categories</Typography>
+              <Typography variant="body2" color="text.secondary">Manage product units of measurement</Typography>
             </Box>
           </Box>
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
@@ -171,28 +171,31 @@ const CategoryMaster = () => {
           <table style={{ width: "100%", fontSize: "0.875rem", borderCollapse: "collapse" }}>
             <thead>
               <tr style={{ background: "linear-gradient(90deg,#22c55e22,#16a34a11)", borderBottom: "1px solid #22c55e33" }}>
-                {["ID", "Category Name", "Description", "Created By", "Created Date", "Modified By", "Modified Date", "Actions"].map(h => (
+                {["ID", "Unit Name", "Symbol", "Description", "Created By", "Created Date", "Modified By", "Modified Date", "Actions"].map(h => (
                   <th key={h} style={{ padding: "12px 16px", textAlign: "left", fontWeight: 600, color: "#16a34a", whiteSpace: "nowrap" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan={8} style={{ textAlign: "center", padding: 48 }}>
+                <tr><td colSpan={9} style={{ textAlign: "center", padding: 48 }}>
                   <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                     style={{ width: 32, height: 32, border: "3px solid #22c55e", borderTopColor: "transparent", borderRadius: "50%", margin: "0 auto" }} />
                 </td></tr>
-              ) : categories.length === 0 ? (
-                <tr><td colSpan={8} style={{ textAlign: "center", padding: 48, color: "#9ca3af" }}>No categories found. Add your first one!</td></tr>
-              ) : categories.map((row, i) => (
+              ) : units.length === 0 ? (
+                <tr><td colSpan={9} style={{ textAlign: "center", padding: 48, color: "#9ca3af" }}>No units found. Add your first one!</td></tr>
+              ) : units.map((row, i) => (
                 <motion.tr key={row.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
                   style={{ borderBottom: "1px solid #f3f4f6" }}
                   onMouseEnter={e => e.currentTarget.style.background = "rgba(34,197,94,0.04)"}
                   onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
                   <td style={{ padding: "12px 16px", fontFamily: "monospace", fontSize: "0.75rem", color: "#9ca3af" }}>#{row.id}</td>
-                  <td style={{ padding: "12px 16px", fontWeight: 600 }}>{row.category_name}</td>
-                  <td style={{ padding: "12px 16px", color: "#6b7280", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.category_description}</td>
-                  <td style={{ padding: "12px 16px" }}><Chip label={row.created_by || "System"} size="small" sx={{ background: "#dcfce7", color: "#16a34a", fontWeight: 600 }} /></td>
+                  <td style={{ padding: "12px 16px", fontWeight: 600 }}>{row.unit_name}</td>
+                  <td style={{ padding: "12px 16px" }}>
+                    <Chip label={row.unit_symbol} size="small" sx={{ background: "#dcfce7", color: "#16a34a", fontWeight: 700, fontFamily: "monospace" }} />
+                  </td>
+                  <td style={{ padding: "12px 16px", color: "#6b7280", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.unit_description}</td>
+                  <td style={{ padding: "12px 16px" }}><Chip label={row.created_by || "System"} size="small" sx={{ background: "#f0fdf4", color: "#16a34a", fontWeight: 600 }} /></td>
                   <td style={{ padding: "12px 16px", color: "#6b7280", whiteSpace: "nowrap" }}>{fmtDate(row.created_date)}</td>
                   <td style={{ padding: "12px 16px" }}><Chip label={row.last_modified_by || "—"} size="small" sx={{ background: "#f0fdf4", color: "#15803d" }} /></td>
                   <td style={{ padding: "12px 16px", color: "#6b7280", whiteSpace: "nowrap" }}>{fmtDate(row.last_modified_date)}</td>
@@ -223,19 +226,27 @@ const CategoryMaster = () => {
               >
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 3 }}>
                   <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <CategoryIcon sx={{ color: "#16a34a" }} />
+                    <ScaleIcon sx={{ color: "#16a34a" }} />
                     <Typography variant="h6" fontWeight="bold" sx={{ fontSize: { xs: "1rem", sm: "1.25rem" } }}>
-                      {editRow ? "Edit Category" : "Add New Category"}
+                      {editRow ? "Edit Unit" : "Add New Unit"}
                     </Typography>
                   </Box>
                   <IconButton onClick={closeModal} size="small"><CloseIcon fontSize="small" /></IconButton>
                 </Box>
                 <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                  <TextField label="Category Name" {...register("category_name")} error={!!errors.category_name} helperText={errors.category_name?.message} fullWidth autoFocus size="small"
+                  {/* Two column on sm+, single on xs */}
+                  <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}>
+                    <TextField label="Unit Name" {...register("unit_name")} error={!!errors.unit_name} helperText={errors.unit_name?.message} fullWidth autoFocus size="small"
+                      placeholder="e.g. Kilogram"
+                      sx={{ "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: "#16a34a" } }} />
+                    <TextField label="Symbol" {...register("unit_symbol")} error={!!errors.unit_symbol} helperText={errors.unit_symbol?.message} fullWidth size="small"
+                      placeholder="e.g. kg"
+                      sx={{ "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: "#16a34a" } }} />
+                  </Box>
+                  <TextField label="Unit Description" {...register("unit_description")} error={!!errors.unit_description} helperText={errors.unit_description?.message} fullWidth multiline rows={3} size="small"
+                    placeholder="e.g. Standard unit of mass in the metric system"
                     sx={{ "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: "#16a34a" } }} />
-                  <TextField label="Category Description" {...register("category_description")} error={!!errors.category_description} helperText={errors.category_description?.message} fullWidth multiline rows={3} size="small"
-                    sx={{ "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: "#16a34a" } }} />
-                  <ModalActions onCancel={closeModal} submitting={submitting} editRow={editRow} label="Category" />
+                  <ModalActions onCancel={closeModal} submitting={submitting} editRow={editRow} label="Unit" />
                 </form>
               </motion.div>
             </Box>
@@ -249,7 +260,7 @@ const CategoryMaster = () => {
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
             style={{ background: "#fff", borderRadius: 16, padding: 28, maxWidth: 360, width: "100%", textAlign: "center" }}>
             <DeleteIcon sx={{ fontSize: 44, color: "#ef4444", mb: 1 }} />
-            <Typography variant="h6" fontWeight="bold" mb={0.5}>Delete Category?</Typography>
+            <Typography variant="h6" fontWeight="bold" mb={0.5}>Delete Unit?</Typography>
             <Typography variant="body2" color="text.secondary" mb={3}>This action cannot be undone.</Typography>
             <Box sx={{ display: "flex", gap: 1.5 }}>
               <Button fullWidth variant="outlined" size="small" onClick={() => setDeleteId(null)} sx={{ borderRadius: "10px", py: 0.9 }}>Cancel</Button>
@@ -262,4 +273,4 @@ const CategoryMaster = () => {
   );
 };
 
-export default CategoryMaster;
+export default UnitMaster;

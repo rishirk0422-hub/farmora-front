@@ -22,6 +22,7 @@ import SellerProducts from "./pages/SellerProducts";
 
 // Masters
 import CategoryMaster from "./Maters/CategoryMaster";
+import UnitMaster from "./Maters/UnitMaster";
 
 function App() {
   // 🔔 Real-time socket listeners
@@ -39,6 +40,7 @@ function App() {
 
         {/* Masters */}
         <Route path="/masters/category" element={<CategoryMaster />} />
+        <Route path="/masters/unit" element={<UnitMaster />} />
 
 
         {/* SELLER */}
