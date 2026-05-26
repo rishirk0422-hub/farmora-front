@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Card from "../ui/Card";
 import { Chip } from "@mui/material";
-import { getImageUrl } from "../../utils/getImageUrl";
 import Loader from "../common/Loader";
 import OrderModal from "./OrderModal";
 
@@ -19,7 +18,7 @@ const ProductCard = ({ product }) => {
   const [imgLoading, setImgLoading] = useState(true);
   const [imgError, setImgError] = useState(false);
   const [open, setOpen] = useState(false);
-  
+
   return (
     <>
       <Card
