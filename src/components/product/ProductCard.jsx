@@ -46,7 +46,7 @@ const ProductCard = ({ product }) => {
           )}
 
           <img
-            src={!imgError ? imageUrl : "https://via.placeholder.com/300"}
+            src={!imgError ? product.url : "https://via.placeholder.com/300"}
             alt={product.title}
             className={`h-48 w-full object-cover transition duration-300 ${
               imgLoading ? "opacity-0" : "opacity-100"
