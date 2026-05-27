@@ -179,7 +179,7 @@ const Dashboard = () => {
   const catColors = [C.green, C.blue, C.amber, C.purple, C.pink, C.red];
 
   return (
-    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Inter', sans-serif", color: C.text }}>
+    <div style={{ minHeight: "100vh",paddingTop:"40px", background: C.bg, fontFamily: "'Inter', sans-serif", color: C.text }}>
       <style>{FONTS}</style>
 
       {/* bg glow */}
