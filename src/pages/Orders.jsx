@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
 import { useAuth } from "../hooks/useAuth";
@@ -387,11 +387,16 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
 
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     try {
       setLoading(true);
-      const endpoint = isSeller ? "/orders/seller" : "/orders/buyer";
+  
+      const endpoint = isSeller
+        ? "/orders/seller"
+        : "/orders/buyer";
+  
       const res = await api.get(endpoint);
+  
       setOrders(res.data);
     } catch (err) {
       toast.error("Failed to load orders");
@@ -399,11 +404,11 @@ const Orders = () => {
     } finally {
       setLoading(false);
     }
-  };
-
+  }, [isSeller]);
+  
   useEffect(() => {
     fetchOrders();
-  }, []);
+  }, [fetchOrders]);
 
   const filtered =
     filter === "all" ? orders : orders.filter((o) => o.status === filter);
