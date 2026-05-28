@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
 import { useAuth } from "../hooks/useAuth";
@@ -167,16 +167,18 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter]   = useState("all");
 
-  const fetchOrders = async () => {
-    try {
-      setLoading(true);
-      const res = await api.get(isSeller ? "/orders/seller" : "/orders/buyer");
-      setOrders(res.data);
-    } catch { toast.error("Failed to load orders"); }
-    finally { setLoading(false); }
-  };
+// 2. Wrap fetchOrders with useCallback
+const fetchOrders = useCallback(async () => {
+  try {
+    setLoading(true);
+    const res = await api.get(isSeller ? "/orders/seller" : "/orders/buyer");
+    setOrders(res.data);
+  } catch { toast.error("Failed to load orders"); }
+  finally { setLoading(false); }
+}, [isSeller]);
 
-  useEffect(() => { fetchOrders(); }, [isSeller]);
+// 3. useEffect stays the same — ESLint is now satisfied
+useEffect(() => { fetchOrders(); }, [fetchOrders]);
 
   const counts = {
     all:       orders.length,
