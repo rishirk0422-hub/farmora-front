@@ -83,7 +83,7 @@ const Footer = () => {
 
             {/* SOCIAL ICONS */}
             <div className="flex gap-3">
-              <a href="https://www.instagram.com">
+              <a href="https://www.instagram.com/_.its._.r_k._?igsh=NzFheXh0bWFnbXN6&utm_source=qr">
                 <Instagram className="hover:text-pink-500 transition" />
               </a>
               <a href="https://www.facebook.com">
@@ -92,7 +92,7 @@ const Footer = () => {
               <a href="https://www.twitter.com">
                 <Twitter className="hover:text-sky-400 transition" />
               </a>
-              <a href="https://www.linkedin.com">
+              <a href="https://www.linkedin.com/in/rishikesh-kale-3999a1242">
                 <LinkedIn className="hover:text-blue-600 transition" />
               </a>
             </div>

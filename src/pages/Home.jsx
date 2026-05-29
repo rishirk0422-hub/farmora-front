@@ -29,7 +29,7 @@ const Home = () => {
           transition={{ delay: 0.3 }}
           className="max-w-2xl mx-auto text-lg opacity-80"
         >
-          Farmora connects farmers and consumers directly — eliminating
+          Farmora connects farmers With consumers directly — eliminating
           middlemen, ensuring fair pricing, and delivering fresh produce.
         </motion.p>
 
