@@ -130,7 +130,7 @@ const CategoryMaster = () => {
                 </tr>
               </thead>
               <tbody>
-                {loading ? (
+                {/* {loading ? (
                   <tr><td colSpan={8} style={{ textAlign: "center", padding: 48 }}>
                     <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                       style={{ width: 32, height: 32, border: "3px solid #16c784", borderTopColor: "transparent", borderRadius: "50%", margin: "0 auto" }} />
@@ -156,7 +156,7 @@ const CategoryMaster = () => {
                       </Box>
                     </td>
                   </motion.tr>
-                ))}
+                ))} */}
               </tbody>
             </table>
           </div>
