@@ -242,6 +242,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ThemeToggle from "./ToggleThemeButton";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 const getGreeting = () => {
   const hour = new Date().getHours();
@@ -401,6 +402,7 @@ const MastersDropdown = ({ location }) => {
                 </Link>
               );
             })}
+            <div><LanguageSwitcher /></div>
           </div>
 
           {/* Footer */}
