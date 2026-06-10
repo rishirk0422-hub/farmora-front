@@ -1,3 +1,5 @@
+import './i18n';    // ← only this line added, nothing else changes
+
 import { Route, Routes } from "react-router-dom";
 import { useSocketEvents } from "./hooks/useSocketEvents";
 
@@ -23,7 +25,6 @@ import SellerProducts from "./pages/SellerProducts";
 // Masters
 import CategoryMaster from "./Maters/CategoryMaster";
 import UnitMaster from "./Maters/UnitMaster";
-import './i18n';    // ← only this line added, nothing else changes
 
 function App() {
   // 🔔 Real-time socket listeners
