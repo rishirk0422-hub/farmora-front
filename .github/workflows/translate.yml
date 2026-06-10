@@ -1,0 +1,32 @@
+name: Auto-translate
+
+on:
+  push:
+    paths:
+      - 'public/locales/en/translation.json'
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Run translate script
+        run: node scripts/translate.js
+
+      - name: Commit translated files
+        run: |
+          git config --global user.email "i18n-bot@github.com"
+          git config --global user.name "i18n bot"
+          git add public/locales/
+          git diff --staged --quiet || git commit -m "auto: update translations"
+          git push
