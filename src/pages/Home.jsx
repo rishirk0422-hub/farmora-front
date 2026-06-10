@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
-import { useEffect, useState } from "react";
-import { useTranslation } from 'react-i18next';
 
 const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap');`;
 
@@ -213,7 +212,7 @@ const Home = () => {
     { to: 50, suffix: "+", label: "Cities", accent: T.purple },
   ];
 
-  const { t } = useTranslation();
+ 
 
   return (
     <div style={{
@@ -269,7 +268,6 @@ const Home = () => {
             }}>
               FARMORA MARKETPLACE
             </span>
-            <span>{t('welcome')}</span>
           </motion.div>
 
           <motion.h1

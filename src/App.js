@@ -1,4 +1,4 @@
-import './i18n';    // ← only this line added, nothing else changes
+// import './i18n';    // ← only this line added, nothing else changes
 
 import { Route, Routes } from "react-router-dom";
 import { useSocketEvents } from "./hooks/useSocketEvents";
