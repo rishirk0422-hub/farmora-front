@@ -12,6 +12,7 @@ const ProductDetails = () => {
 
   if (!product) return <p>Loading...</p>;
 
+
   return (
     <div className="max-w-3xl mx-auto">
       <img
